@@ -10,7 +10,7 @@
 
 // blancs : pion = 1; tours = 2; cavaliers = 3; fous = 4; roi = 5; dame = 6;
 // noirs : pion = 11; tours = 12; cavaliers = 13; fous = 14; roi = 15; dame = 16;
-
+/*
 int pospionblanc (int board[SUR_MATRICE][SUR_MATRICE], int posi, int posj);
 int pospionnoir (int board[SUR_MATRICE][SUR_MATRICE], int posi, int posj);
 
@@ -29,13 +29,36 @@ int posfounoir(int board[SUR_MATRICE][SUR_MATRICE], int posi, int posj);
 int posdameblanc(int board[SUR_MATRICE][SUR_MATRICE], int posi, int posj);
 int posdamenoir(int board[SUR_MATRICE][SUR_MATRICE], int posi, int posj);
 
+void changepos(int board[10][10], int posiav, int posjav, int posiap, int posjap);
+
+
+*/
+
+
+void affichplateau(int board[10][10]){
+	int i=0;
+	int j=0;
+	for (i=0; i<= 9; i++){
+		for (j=0; j<= 9; j++){
+			printf("%4d",board[i][j]);
+		}
+		printf("\n");
+	}
+
+}
+
+
+
+void changepos(int board[10][10], int posiav, int posjav, int posiap, int posjap){
+	board[posiap][posjap] = board[posiav][posjav];
+	board[posiav][posjav] = 0;
+}
 
 
 
 
 int pospionblanc(int board[SUR_MATRICE][SUR_MATRICE], int posi, int posj){
-	int i =0;
-	int j=0;
+
 
 	if ((board[posi-1][posj-1]) >= 10){
 		board[posi-1][posj-1] = board[posi-1][posj-1] +100;
@@ -45,27 +68,11 @@ int pospionblanc(int board[SUR_MATRICE][SUR_MATRICE], int posi, int posj){
 	}
 	if ((board[posi-1][posj-1])<=10 && (board[posi-1][posj+1])<=10 && (board[posi-1][posj]== 0)){
 		board[posi-1][posj] = 100;
-	}
-	
-	for (i=0; i<= 9; i++){
-		for (j=0; j<= 9; j++){
-			if (board[i][j] >= 100 && board[i][j]<1000){
-				printf( REVERSEVIDEO"%4d"NORMAL, board[i][j]-100);
-				
-			}
-			else{
-				printf("%4d", board[i][j]);
-			}
-			
-		}
-		printf("\n");
-	}
-	return 0;	
+	}	
 }
 
 int pospionnoir(int board[SUR_MATRICE][SUR_MATRICE], int posi, int posj){
-	int i =0;
-	int j=0;
+
 
 	if ((board[posi+1][posj-1]) <= 10 && (board[posi+1][posj-1]) >=1){
 		board[posi+1][posj-1] = board[posi+1][posj-1] +100;
@@ -76,27 +83,12 @@ int pospionnoir(int board[SUR_MATRICE][SUR_MATRICE], int posi, int posj){
 	if (((board[posi+1][posj-1])>=10 || (board[posi+1][posj-1])==0)  && ((board[posi+1][posj+1])>=10 || (board[posi+1][posj+1])==0 )&& (board[posi+1][posj]== 0)){
 		board[posi+1][posj] = 100;
 	}
-	
-	for (i=0; i<= 9; i++){
-		for (j=0; j<= 9; j++){
-			if (board[i][j] >= 100 && board[i][j]<1000){
-				printf( REVERSEVIDEO"%4d"NORMAL, board[i][j]-100);
-				
-			}
-			else{
-				printf("%4d", board[i][j]);
-			}
-			
-		}
-		printf("\n");
-	}
-	return 0;	
+
 }
 
 
 int posroiblanc (int board[SUR_MATRICE][SUR_MATRICE], int posi, int posj) {
-	int i = 0;
-	int j = 0;
+
 	if ((board[posi-1][posj-1]) >= 10 || (board[posi-1][posj-1]) == 0) {
 		board[posi-1][posj-1] = board[posi-1][posj-1] + 100;
 
@@ -129,25 +121,12 @@ int posroiblanc (int board[SUR_MATRICE][SUR_MATRICE], int posi, int posj) {
 		board[posi+1][posj+1] = board[posi+1][posj+1] + 100;
 
 	}
-	for (i=0; i<= 9; i++){
-		for (j=0; j<= 9; j++){
-			if (board[i][j] >= 100 && board[i][j]<1000){
-				printf( REVERSEVIDEO"%4d"NORMAL, board[i][j]-100);
-				
-			}
-			else{
-				printf("%4d", board[i][j]);
-			}
-			
-		}
-		printf("\n");
-	}
-	return 0;	
+	
+	
 }
 
 int posroinoir(int board[SUR_MATRICE][SUR_MATRICE], int posi, int posj) {
-	int i = 0;
-	int j = 0;
+
 	if ((board[posi-1][posj-1]) <= 10 ) {
 		board[posi-1][posj-1] = board[posi-1][posj-1] + 100;
 
@@ -180,27 +159,13 @@ int posroinoir(int board[SUR_MATRICE][SUR_MATRICE], int posi, int posj) {
 		board[posi+1][posj+1] = board[posi+1][posj+1] + 100;
 
 	}
-	for (i=0; i<= 9; i++){
-		for (j=0; j<= 9; j++){
-			if (board[i][j] >= 100 && board[i][j]<1000){
-				printf( REVERSEVIDEO"%4d"NORMAL, board[i][j]-100);
-				
-			}
-			else{
-				printf("%4d", board[i][j]);
-			}
-			
-		}
-		printf("\n");
-	}
-	return 0;	
+
 }
 
 
 
 int poscavalierblanc (int board[SUR_MATRICE][SUR_MATRICE], int posi, int posj) {
-	int i = 0;
-	int j = 0;
+
 	if ((board[posi-1][posj-2] >= 10 || board[posi-1][posj-2] == 0)) {
  	   board[posi-1][posj-2] = board[posi-1][posj-2] + 100;
  	}
@@ -225,25 +190,11 @@ int poscavalierblanc (int board[SUR_MATRICE][SUR_MATRICE], int posi, int posj) {
 	if ((board[posi+1][posj+2] >= 10 || board[posi+1][posj+2] == 0)) {
 	    board[posi+1][posj+2] = board[posi+1][posj+2] + 100;
 	}
-	for (i=0; i<= 9; i++){
-		for (j=0; j<= 9; j++){
-			if (board[i][j] >= 100 && board[i][j]<1000){
-				printf( REVERSEVIDEO"%4d"NORMAL, board[i][j]-100);
-				
-			}
-			else{
-				printf("%4d", board[i][j]);
-			}
-			
-		}
-		printf("\n");
-	}
-	return 0;	
+
 }
 
 int poscavaliernoir (int board[SUR_MATRICE][SUR_MATRICE], int posi, int posj) {
-	int i = 0;
-	int j = 0;
+
 	if (board[posi-1][posj-2] <= 10) {
  	   board[posi-1][posj-2] = board[posi-1][posj-2] + 100;
  	}
@@ -268,20 +219,7 @@ int poscavaliernoir (int board[SUR_MATRICE][SUR_MATRICE], int posi, int posj) {
 	if (board[posi+1][posj+2] <= 10) {
 	    board[posi+1][posj+2] = board[posi+1][posj+2] + 100;
 	}
-	for (i=0; i<= 9; i++){
-		for (j=0; j<= 9; j++){
-			if (board[i][j] >= 100 && board[i][j]<1000){
-				printf( REVERSEVIDEO"%4d"NORMAL, board[i][j]-100);
-				
-			}
-			else{
-				printf("%4d", board[i][j]);
-			}
-			
-		}
-		printf("\n");
-	}
-	return 0;	
+
 }
 
 
@@ -290,8 +228,7 @@ int poscavaliernoir (int board[SUR_MATRICE][SUR_MATRICE], int posi, int posj) {
 
 
 int postourblanc(int board[SUR_MATRICE][SUR_MATRICE], int posi, int posj){ 
-	int i=0;
-	int j=0;
+	int i,j;
 	int pos_ad_i =0;
 	int pos_ad_j =0;
 	int a1=0;
@@ -303,8 +240,8 @@ int postourblanc(int board[SUR_MATRICE][SUR_MATRICE], int posi, int posj){
 	int c=0;
 	int d=0;
 	int e=0;
-	
-	
+		
+	printf("test6");
 	while (a1 <= 1){
 		for (i=posi+1; i<=9; i++){
 			
@@ -351,6 +288,7 @@ int postourblanc(int board[SUR_MATRICE][SUR_MATRICE], int posi, int posj){
 			
 		}
 	}
+	printf("test6");
 	
 	//De la tour au pion suivant en dessous
 	if (board[b][posj]<=10){
@@ -434,29 +372,13 @@ int postourblanc(int board[SUR_MATRICE][SUR_MATRICE], int posi, int posj){
 	}
 
 	
-	
-	for (i=0; i<= 9; i++){
-		for (j=0; j<= 9; j++){
-			if (board[i][j] >= 100 && board[i][j]<1000){
-				printf( REVERSEVIDEO"%4d"NORMAL, board[i][j]-100);
-				
-			}
-			else{
-				printf("%4d", board[i][j]);
-			}
-			
-		}
-		printf("\n");
-	}
-	return 0;	
 }
 
 
 
 int postournoir(int board[SUR_MATRICE][SUR_MATRICE], int posi, int posj){ 
-	int i=0;
-	int j=0;
-	
+
+	int i,j;
 	int a1=0;
 	int a2=0;
 	int a3=0;
@@ -467,6 +389,7 @@ int postournoir(int board[SUR_MATRICE][SUR_MATRICE], int posi, int posj){
 	int d=0;
 	int e=0;
 	
+
 	
 	while (a1 <= 1){
 		for (i=posi+1; i<=9; i++){
@@ -603,30 +526,13 @@ int postournoir(int board[SUR_MATRICE][SUR_MATRICE], int posi, int posj){
 			}
 		}
 	}
-	
-	
-	
-	for (i=0; i<= 9; i++){
-		for (j=0; j<= 9; j++){
-			if (board[i][j] >= 100 && board[i][j]<1000){
-				printf( REVERSEVIDEO"%4d"NORMAL, board[i][j]-100);
-				
-			}
-			else{
-				printf("%4d", board[i][j]);
-			}
-			
-		}
-		printf("\n");
-	}
-	return 0;	
+
 }
 
 
 int posfoublanc(int board[SUR_MATRICE][SUR_MATRICE], int posi, int posj){ 
-	int i=0;
-	int j=0;
 
+	int i,j;
 	int a1=0;
 	int a2=0;
 	int a3=0;
@@ -641,6 +547,7 @@ int posfoublanc(int board[SUR_MATRICE][SUR_MATRICE], int posi, int posj){
 	int ei=0;
 	int ej=0;
 	
+
 	
 	while (a1 <= 1){
 		for (i=posi+1, j= posj+1; i<=9 && j<= 9; i++, j++){
@@ -781,28 +688,13 @@ int posfoublanc(int board[SUR_MATRICE][SUR_MATRICE], int posi, int posj){
 		}
 	}
 
-	
-	
-	for (i=0; i<= 9; i++){
-		for (j=0; j<= 9; j++){
-			if (board[i][j] >= 100 && board[i][j]<1000){
-				printf( REVERSEVIDEO"%4d"NORMAL, board[i][j]-100);
-				
-			}
-			else{
-				printf("%4d", board[i][j]);
-			}
-			
-		}
-		printf("\n");
-	}
-	return 0;	
 }
 
 int posfounoir(int board[SUR_MATRICE][SUR_MATRICE], int posi, int posj){ 
-	int i=0;
-	int j=0;
 
+
+	int i,j;
+	
 	int a1=0;
 	int a2=0;
 	int a3=0;
@@ -816,7 +708,7 @@ int posfounoir(int board[SUR_MATRICE][SUR_MATRICE], int posi, int posj){
 	int dj=0;
 	int ei=0;
 	int ej=0;
-	
+
 	
 	while (a1 <= 1){
 		for (i=posi+1, j= posj+1; i<=9 && j<= 9; i++, j++){
@@ -957,29 +849,11 @@ int posfounoir(int board[SUR_MATRICE][SUR_MATRICE], int posi, int posj){
 		}
 	}
 
-	
-	
-	for (i=0; i<= 9; i++){
-		for (j=0; j<= 9; j++){
-			if (board[i][j] >= 100 && board[i][j]<1000){
-				printf( REVERSEVIDEO"%4d"NORMAL, board[i][j]-100);
-				
-			}
-			else{
-				printf("%4d", board[i][j]);
-			}
-			
-		}
-		printf("\n");
-	}
-	return 0;	
 }
 
 
 
 int posdameblanc(int board[SUR_MATRICE][SUR_MATRICE], int posi, int posj){
-	int i=0;
-	int j=0;
 
 	int a1=0;
 	int a2=0;
@@ -1004,7 +878,8 @@ int posdameblanc(int board[SUR_MATRICE][SUR_MATRICE], int posi, int posj){
 	int ei=0;
 	int ej=0;
 
-	
+
+	int i,j;
 	
 	while (a1 <= 1){
 		for (i=posi+1; i<=9; i++){
@@ -1280,29 +1155,12 @@ int posdameblanc(int board[SUR_MATRICE][SUR_MATRICE], int posi, int posj){
 		}
 	}
 
-	
-	
-	for (i=0; i<= 9; i++){
-		for (j=0; j<= 9; j++){
-			if (board[i][j] >= 100 && board[i][j]<1000){
-				printf( REVERSEVIDEO"%4d"NORMAL, board[i][j]-100);
-				
-			}
-			else{
-				printf("%4d", board[i][j]);
-			}
-			
-		}
-		printf("\n");
-	}
-	return 0;	
 }
 
 
 
 int posdamenoir(int board[SUR_MATRICE][SUR_MATRICE], int posi, int posj){
-	int i=0;
-	int j=0;
+
 
 	int a1=0;
 	int a2=0;
@@ -1326,9 +1184,9 @@ int posdamenoir(int board[SUR_MATRICE][SUR_MATRICE], int posi, int posj){
 	int dj=0;
 	int ei=0;
 	int ej=0;
+	
+	int i,j;
 
-	
-	
 	while (a1 <= 1){
 		for (i=posi+1; i<=9; i++){
 			
@@ -1603,12 +1461,89 @@ int posdamenoir(int board[SUR_MATRICE][SUR_MATRICE], int posi, int posj){
 		}
 	}
 
+}
+
+
+
+void echecnoir (int board[10][10])
+{
+	int i;
+	int j;
 	
 	
+	for (i=1; i<=8; i++){
+		for (j=1; j<=8; j++){
+			if(board[i][j]==1){
+				pospionblanc(board, i, j);
+				if (isechec(board)==1){
+					printf("echec");
+					break;
+				}
+			}
+			else{
+				if(board[i][j]==2){
+
+					postourblanc(board, i, j);
+					if (isechec(board)==1){
+						printf("echec");
+						break;
+					}
+				}
+				else{
+					if(board[i][j]==3){
+						poscavalierblanc(board, i, j);
+						if (isechec(board)==1){
+							printf("echec");
+							break;
+						}
+					}
+					else{
+						if(board[i][j]==4){
+							posfoublanc(board, i, j);
+							if (isechec(board)==1){
+								printf("echec");
+								break;
+							}
+						}
+						else{}
+							if(board[i][j]==5){
+								posroiblanc(board, i, j);
+								if (isechec(board)==1){
+									printf("echec");
+									break;
+								}
+							}
+							else{
+								if(board[i][j]==6){
+									posdameblanc(board, i, j);
+									if (isechec(board)==1){
+										printf("echec");
+										break;
+									}
+								}
+							}
+						}
+					}
+				}
+			}			
+		}
+    affichplateau(board);
+}
+
+
+
+
+void affichpos(int board[10][10]){
+	int echec=0;
+	int i,j;
 	for (i=0; i<= 9; i++){
 		for (j=0; j<= 9; j++){
+			if (board[i][j]==105 || board[i][j]==115){
+				echec=1;
+			}
 			if (board[i][j] >= 100 && board[i][j]<1000){
-				printf( REVERSEVIDEO"%4d"NORMAL, board[i][j]-100);
+				board[i][j]=board[i][j]-100;
+				printf( REVERSEVIDEO"%4d"NORMAL, board[i][j]);
 				
 			}
 			else{
@@ -1618,12 +1553,90 @@ int posdamenoir(int board[SUR_MATRICE][SUR_MATRICE], int posi, int posj){
 		}
 		printf("\n");
 	}
-	return 0;	
+
+}
+
+int isechec(int board[10][10]){
+	int echec=0;
+	int i,j;
+	for (i=0; i<= 9; i++){
+		for (j=0; j<= 9; j++){
+			if (board[i][j]==105 || board[i][j]==115){
+				echec=1;
+			}
+		}
+	}
+	return echec;
+}
+
+
+
+void sauvegarde (int plateau[10][10]) 
+{
+int a,b,i=0, test1;
+char couleur[2], nomfichier[50];
+FILE*fic;
+    printf("Nom de fichier ?");
+    scanf("%s",nomfichier);
+    fic = fopen(nomfichier, "w");
+    if(fic==NULL)
+    {
+        printf("Impossible de créer le fichier\n");
+        exit(-1);
+    }
+    else
+    {
+        for (a=1;a<=8;a++)
+        {
+            for(b=1;b<=8;b++)
+            {
+	            test1=plateau[a][b];
+                fprintf( fic, "%3d\n", test1);
+            }
+         }
+    }
+      
+    fclose(fic);
+    printf("Echiquier sauvegarde\n");
+       
 }
 
 
 
 
+void chargement(plateau[10][10])
+{
+int a=0, b=0;
+//int *retour[64];
+int maxligne = 3;
+char nomfichier[50];
+FILE*fic;
+    printf("Donnez le nom du fichier:\n");
+    scanf("%s",nomfichier);
+
+
+    fic=fopen(nomfichier,"r");
+    if (fic==NULL)
+    {
+        printf("Problème d'acces au fichier %s\n",nomfichier);
+        exit(-1);
+        
+    }
+       
+    else
+	{
+		//fgets(retour, maxligne, fic);
+			for(a=1; a<=8; a++){
+				for(b=1; b<=8; b++){
+					fprintf(fic, "%d", plateau[a][b]);
+					
+				}
+			}
+		
+	}
+	fclose(fic);
+}
+ 
 
 
 

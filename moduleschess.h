@@ -27,6 +27,16 @@ int posdameblanc(int board[SUR_MATRICE][SUR_MATRICE], int posi, int posj);
 int posdamenoir(int board[SUR_MATRICE][SUR_MATRICE], int posi, int posj);
 
 void changepos(int board[10][10], int posiav, int posjav, int posiap, int posjap);
+void affichplateau(int board[10][10]);
+
+
+void echecnoir (int board[10][10]);
+
+int isechec(int board[10][10]);
+
+
+void sauvegarde (int plateau[10][10]);
+void chargement(int plateau[10][10]);
 
 
 #endif
