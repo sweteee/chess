@@ -1637,6 +1637,126 @@ FILE*fic;
 	fclose(fic);
 }
  
+ 
+ 
+
+void tourjblanc(int board[10][10]){
+	int posiav=0;
+	int posjav=0;
+	int posiap=0;
+	int posjap=0;
+	printf("Quel pion voulez vous jouer ?\n");
+	printf("i = ?");
+	scanf("%d", &posiav);
+	getchar();
+	printf("j = ?");
+	scanf("%d", &posjav);
+	if (board[posiav][posjav]== 0){
+		printf("Vous avez selectionné une case vide, veuillez recommencer\n");
+	}
+	if (board[posiav][posjav]>= 10){
+		printf("Le pion que vous avez choisi n'est pas a vous, veuillez recommencer\n");
+	}
+
+	if (board[posiav][posjav]== 1){
+		pospionblanc(board, posiav, posjav);
+		printf("Sur quelle case voulez vous le déplacer?\n");
+		printf("i = ?");
+		scanf("%d", &posiap);
+		getchar();
+		printf("j = ?");
+		scanf("%d", &posjap);
+		if (board[posiap][posjap] >= 10 && board[posiap][posjap] < 1000){
+			changepos(board, posiav, posjav, posiap, posjap);
+			affichplateau(board);
+		}
+		else{
+			printf("Vous ne pouvez pas jouer ici");
+		}
+	}
+	if (board[posiav][posjav]== 2){
+		postourblanc(board, posiav, posjav);
+		printf("Sur quelle case voulez vous le déplacer?\n");
+		printf("i = ?");
+		scanf("%d", &posiap);
+		getchar();
+		printf("j = ?");
+		scanf("%d", &posjap);
+		if (board[posiap][posjap] >= 10 && board[posiap][posjap] < 1000){
+			changepos(board, posiav, posjav, posiap, posjap);
+			affichplateau(board);
+		}
+		else{
+			printf("Vous ne pouvez pas jouer ici");
+		}
+	}
+	if (board[posiav][posjav]== 3){
+		poscavalierblanc(board, posiav, posjav);
+		printf("Sur quelle case voulez vous le déplacer?\n");
+		printf("i = ?");
+		scanf("%d", &posiap);
+		getchar();
+		printf("j = ?");
+		scanf("%d", &posjap);
+		if (board[posiap][posjap] >= 10 && board[posiap][posjap] < 1000){
+			changepos(board, posiav, posjav, posiap, posjap);
+			affichplateau(board);
+		}
+		else{
+			printf("Vous ne pouvez pas jouer ici");
+		}
+	}
+	if (board[posiav][posjav]== 4){
+		posfoublanc(board, posiav, posjav);
+		printf("Sur quelle case voulez vous le déplacer?\n");
+		printf("i = ?");
+		scanf("%d", &posiap);
+		getchar();
+		printf("j = ?");
+		scanf("%d", &posjap);
+		if (board[posiap][posjap] >= 10 && board[posiap][posjap] < 1000){
+			changepos(board, posiav, posjav, posiap, posjap);
+			affichplateau(board);
+		}
+		else{
+			printf("Vous ne pouvez pas jouer ici");
+		}
+	}
+	if (board[posiav][posjav]== 5){
+		posroiblanc(board, posiav, posjav);
+		printf("Sur quelle case voulez vous le déplacer?\n");
+		printf("i = ?");
+		scanf("%d", &posiap);
+		getchar();
+		printf("j = ?");
+		scanf("%d", &posjap);
+		if (board[posiap][posjap] >= 10 && board[posiap][posjap] < 1000){
+			changepos(board, posiav, posjav, posiap, posjap);
+			affichplateau(board);
+		}
+		else{
+			printf("Vous ne pouvez pas jouer ici");
+		}
+	}
+	if (board[posiav][posjav]== 6){
+		posdameblanc(board, posiav, posjav);
+		printf("Sur quelle case voulez vous le déplacer?\n");
+		printf("i = ?");
+		scanf("%d", &posiap);
+		getchar();
+		printf("j = ?");
+		scanf("%d", &posjap);
+		if (board[posiap][posjap] >= 10 && board[posiap][posjap] < 1000){
+			changepos(board, posiav, posjav, posiap, posjap);
+			affichplateau(board);
+		}
+		else{
+			printf("Vous ne pouvez pas jouer ici");
+		}
+	}
+}
+
+
 
 
 

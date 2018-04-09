@@ -29,6 +29,7 @@ int posdamenoir(int board[SUR_MATRICE][SUR_MATRICE], int posi, int posj);
 void changepos(int board[10][10], int posiav, int posjav, int posiap, int posjap);
 void affichplateau(int board[10][10]);
 
+void tourjblanc(int board[10][10]);
 
 void echecnoir (int board[10][10]);
 

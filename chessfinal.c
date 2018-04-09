@@ -17,6 +17,9 @@
 
 
 
+
+
+
 int main (){
 	int posiav=0;
 	int posjav=0;
@@ -75,12 +78,13 @@ int main (){
 		printf("\n");
 	}
 	getchar();
-	chargement(plateau);
+	tourjblanc(plateau);
+	//chargement(plateau);
 	//sauvegarde(plateau);
 	getchar();
 	affichplateau(plateau);
 	//sauvegarde(plateau);
-	//tourjblanc(plateau);
+
 	//echecnoir(plateau);
 	
 	
