@@ -30,14 +30,15 @@ void changepos(int board[10][10], int posiav, int posjav, int posiap, int posjap
 void affichplateau(int board[10][10]);
 
 void tourjblanc(int board[10][10]);
+void tourjnoir(int board[10][10]);
 
 void echecnoir (int board[10][10]);
 
 int isechec(int board[10][10]);
 
 
-void sauvegarde (int plateau[10][10]);
-void chargement(int plateau[10][10]);
+void sauvegarde (int plateau[10][10], int play);
+void chargement(plateau[10][10], int* play);
 
 
 #endif
