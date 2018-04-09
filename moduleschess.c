@@ -66,8 +66,11 @@ int pospionblanc(int board[SUR_MATRICE][SUR_MATRICE], int posi, int posj){
 	if ((board[posi-1][posj+1]) >= 10){
 		board[posi-1][posj+1] = board[posi-1][posj+1] +100;
 	}
-	if ((board[posi-1][posj-1])<=10 && (board[posi-1][posj+1])<=10 && (board[posi-1][posj]== 0)){
+	if ((board[posi-1][posj-1]<=10 || (board[posi-1][posj-1]>=1000) && ((board[posi-1][posj+1]<=10) || (board[posi-1][posj+1]>=1000)) && (board[posi-1][posj]== 0))){
 		board[posi-1][posj] = 100;
+		if ((board[posi-2][posj]== 0) && posi==7){
+			board[posi-2][posj] = 100;
+		}
 	}	
 }
 
@@ -82,7 +85,11 @@ int pospionnoir(int board[SUR_MATRICE][SUR_MATRICE], int posi, int posj){
 	}
 	if (((board[posi+1][posj-1])>=10 || (board[posi+1][posj-1])==0)  && ((board[posi+1][posj+1])>=10 || (board[posi+1][posj+1])==0 )&& (board[posi+1][posj]== 0)){
 		board[posi+1][posj] = 100;
+		if ((board[posi+2][posj]==0) && posi==2){
+			board[posi+2][posj] = 100;
+		}
 	}
+	
 
 }
 
@@ -1659,7 +1666,9 @@ void tourjblanc(int board[10][10]){
 	}
 
 	if (board[posiav][posjav]== 1){
+		printf("test\n");
 		pospionblanc(board, posiav, posjav);
+		affichpos(board);
 		printf("Sur quelle case voulez vous le déplacer?\n");
 		printf("i = ?");
 		scanf("%d", &posiap);
