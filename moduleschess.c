@@ -1612,9 +1612,9 @@ FILE*fic;
 
 
 
-void chargement(plateau[10][10], int* play)
+void chargement(int plateau[10][10], int* play)
 {
-int a=0, b=0;
+int a=0, b=0, c=0;
 //int *retour[64];
 int maxligne = 3;
 char nomfichier[50];
@@ -1633,15 +1633,13 @@ FILE*fic;
        
     else
 	{		
-			fscanf(fic, "%d", &play);
+			fscanf(fic, "%d", play);
 			for(a=1; a<=8; a++){
 				for(b=1; b<=8; b++){
 					fprintf(fic, "%d", plateau[a][b]);
 					
 				}
 			}
-			
-			printf("%d\n", play);
 	}
 	fclose(fic);
 }
@@ -1670,7 +1668,7 @@ void tourjblanc(int board[10][10]){
 
 	if (board[posiav][posjav]== 1){
 		while(a==0){
-			printf("test\n");
+			
 			pospionblanc(board, posiav, posjav);
 			affichpos(board);
 			printf("Sur quelle case voulez vous le déplacer?\n");
@@ -1816,7 +1814,7 @@ void tourjnoir(int board[10][10]){
 
 	if (board[posiav][posjav]== 11){
 		while(a==0){
-			printf("test\n");
+			
 			pospionnoir(board, posiav, posjav);
 			affichpos(board);
 			printf("Sur quelle case voulez vous le déplacer?\n");

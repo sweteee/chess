@@ -27,6 +27,8 @@ int main (){
 	int posjap=0;
 	int end=0;
 	int play=0;
+	int save=0;
+	char a;
 	int plateau [SUR_MATRICE][SUR_MATRICE];
 	int i=0;
 	int j=0;
@@ -69,16 +71,29 @@ int main (){
 	for (j=1; j<=8; j++){
 		plateau[7][j]=1;
 	}
-	
+	while(save=0){
+		Printf("Voulez vous charger une partie ? y/n\n");
+		a=getchar();
+		getchar();
+		if (a == 'y'){
+			chargement(plateau, play);
+			break;
+		}
+		else{
+			play = 1;
+		}
+	}
 	
 	for (i=1; i<= 8; i++){
 		for (j=1; j<= 8; j++){
 			printf("%4d",plateau[i][j]);
+			
 		}
 		printf("\n");
 	}
 	getchar();
-	/*while(end == 0){
+	
+	while(end == 0){
 		if (play == 1){
 			tourjblanc(plateau);
 		}
@@ -86,17 +101,19 @@ int main (){
 			tourjnoir(plateau);
 		}
 	}
-	*/
+	
+	
 	//tourjblanc(plateau);
 	//tourjnoir(plateau);
 	//chargement(plateau);
 	//sauvegarde(plateau);
 	//getchar();
-	affichplateau(plateau);
-	getchar();
+	//affichplateau(plateau);
+	//getchar();
 	//sauvegarde(plateau, play);
-	chargement(plateau, play);
-	affichplateau(plateau);
+	//chargement(plateau, &play);
+	//affichplateau(plateau);
+	//printf("%d\n", play);
 	//printf("%d\n", play);
 
 	//echecnoir(plateau);
