@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include <signal.h>
 
 #include "moduleschess.h"
 
@@ -15,12 +16,18 @@
 // noirs : pion = 11; tours = 12; cavaliers = 13; fous = 14; roi = 15; dame = 16;
 
 
-
+void savexit(int plateau[10][10], int play){
+	sauvegarde(plateau, play);
+	exit(0);
+}
 
 
 
 
 int main (){
+	signal(SIGTSTP , sauvegarde);
+	signal(SIGINT, savexit);
+
 	int posiav=0;
 	int posjav=0;
 	int posiap=0;
@@ -71,34 +78,36 @@ int main (){
 	for (j=1; j<=8; j++){
 		plateau[7][j]=1;
 	}
-	while(save=0){
-		Printf("Voulez vous charger une partie ? y/n\n");
+	
+	
+	
+		
+	//sauvegarde(plateau, play);
+	
+	
+	while(save==0){
+		printf("Voulez vous charger une partie ? y/n\n");
 		a=getchar();
-		getchar();
+		//getchar();
 		if (a == 'y'){
-			chargement(plateau, play);
+			chargement(plateau, &play);
 			break;
 		}
 		else{
 			play = 1;
+			break;
 		}
 	}
 	
-	for (i=1; i<= 8; i++){
-		for (j=1; j<= 8; j++){
-			printf("%4d",plateau[i][j]);
-			
-		}
-		printf("\n");
-	}
+	affichplateau(plateau);
 	getchar();
 	
 	while(end == 0){
 		if (play == 1){
-			tourjblanc(plateau);
+			tourjblanc(plateau, &play);
 		}
 		if (play == 2){
-			tourjnoir(plateau);
+			tourjnoir(plateau, &play);
 		}
 	}
 	

@@ -50,6 +50,7 @@ void affichplateau(int board[10][10]){
 
 
 void changepos(int board[10][10], int posiav, int posjav, int posiap, int posjap){
+	
 	board[posiap][posjap] = board[posiav][posjav];
 	board[posiav][posjav] = 0;
 }
@@ -77,17 +78,20 @@ int pospionblanc(int board[SUR_MATRICE][SUR_MATRICE], int posi, int posj){
 int pospionnoir(int board[SUR_MATRICE][SUR_MATRICE], int posi, int posj){
 
 
-	if ((board[posi+1][posj-1]) <= 10 && (board[posi+1][posj-1]) >=1){
-		board[posi+1][posj-1] = board[posi+1][posj-1] +100;
-	}
-	if ((board[posi+1][posj+1]) <= 10 && (board[posi+1][posj+1]) >= 1){
-		board[posi+1][posj+1] = board[posi+1][posj+1] +100;
-	}
+	
 	if (((board[posi+1][posj-1])>=10 || (board[posi+1][posj-1])==0)  && ((board[posi+1][posj+1])>=10 || (board[posi+1][posj+1])==0 )&& (board[posi+1][posj]== 0)){
 		board[posi+1][posj] = 100;
 		if ((board[posi+2][posj]==0) && posi==2){
 			board[posi+2][posj] = 100;
 		}
+	}
+	else{
+		if ((board[posi+1][posj-1]) <= 10 && (board[posi+1][posj-1]) >=1){
+			board[posi+1][posj-1] = board[posi+1][posj-1] +100;
+		}
+		if ((board[posi+1][posj+1]) <= 10 && (board[posi+1][posj+1]) >= 1){
+			board[posi+1][posj+1] = board[posi+1][posj+1] +100;
+	}
 	}
 	
 
@@ -1580,12 +1584,14 @@ int isechec(int board[10][10]){
 
 void sauvegarde (int plateau[10][10], int play) 
 {
-int a,b,i=0, test1;
-char couleur[2], nomfichier[50];
+int a,b, test1;
+char nomfichier[50];
 FILE*fic;
     printf("Nom de fichier ?");
     scanf("%s",nomfichier);
+    printf("test2");
     fic = fopen(nomfichier, "w");
+    printf("test");
     if(fic==NULL)
     {
         printf("Impossible de créer le fichier\n");
@@ -1593,6 +1599,7 @@ FILE*fic;
     }
     else
     {
+	    
 	    fprintf(fic,"%d\n", play);
         for (a=1;a<=8;a++)
         {
@@ -1615,8 +1622,6 @@ FILE*fic;
 void chargement(int plateau[10][10], int* play)
 {
 int a=0, b=0, c=0;
-//int *retour[64];
-int maxligne = 3;
 char nomfichier[50];
 FILE*fic;
     printf("Donnez le nom du fichier:\n");
@@ -1647,25 +1652,29 @@ FILE*fic;
  
  
 
-void tourjblanc(int board[10][10]){
+void tourjblanc(int board[10][10], int*play){
 	int posiav=0;
 	int posjav=0;
 	int posiap=0;
 	int posjap=0;
 	int a = 0;
-	printf("Quel pion voulez vous jouer ?\n");
-	printf("i = ?");
-	scanf("%d", &posiav);
-	getchar();
-	printf("j = ?");
-	scanf("%d", &posjav);
-	if (board[posiav][posjav]== 0){
-		printf("Vous avez selectionné une case vide, veuillez recommencer\n");
-	}
-	if (board[posiav][posjav]>= 10){
-		printf("Le pion que vous avez choisi n'est pas a vous, veuillez recommencer\n");
+	printf("JOUEUR BLANC\n");
+	while(a==0){
+		printf("Quel pion voulez vous jouer ?\n");
+		printf("i = ?");
+		scanf("%d", &posiav);
+		getchar();
+		printf("j = ?");
+		scanf("%d", &posjav);
+		if (board[posiav][posjav]== 0 || board[posiav][posjav]>=10){
+			printf("Vous ne pouvez pas choisir ce pion\n");
+		}
+		else{
+			break;
+		}
 	}
 
+	
 	if (board[posiav][posjav]== 1){
 		while(a==0){
 			
@@ -1677,16 +1686,20 @@ void tourjblanc(int board[10][10]){
 			getchar();
 			printf("j = ?");
 			scanf("%d", &posjap);
-			if ((board[posiap][posjap] >= 10 && board[posiap][posjap] < 1000) || board[posiap][posjap] == 0){
+			pospionblanc(board, posiav, posjav);
+			if ((board[posiap][posjap] >= 100 && board[posiap][posjap] < 1000) || board[posiap][posjap] == 0){
 				changepos(board, posiav, posjav, posiap, posjap);
 				affichplateau(board);
+				*play=2;
 				break;
 			}
 			else{
 				printf("Vous ne pouvez pas jouer ici");
 			}
 		}	
+		
 	}
+	return;
 	if (board[posiav][posjav]== 2){
 		while(a==0){
 			postourblanc(board, posiav, posjav);
@@ -1700,6 +1713,7 @@ void tourjblanc(int board[10][10]){
 			if ((board[posiap][posjap] >= 10 && board[posiap][posjap] < 1000) || board[posiap][posjap] == 0){
 				changepos(board, posiav, posjav, posiap, posjap);
 				affichplateau(board);
+				*play=2;
 				break;
 			}
 			else{
@@ -1707,6 +1721,7 @@ void tourjblanc(int board[10][10]){
 			}
 		}	
 	}
+	return;
 	if (board[posiav][posjav]== 3){
 		while(a==0){
 			poscavalierblanc(board, posiav, posjav);
@@ -1720,6 +1735,7 @@ void tourjblanc(int board[10][10]){
 			if ((board[posiap][posjap] >= 10 && board[posiap][posjap] < 1000) || board[posiap][posjap] == 0){
 				changepos(board, posiav, posjav, posiap, posjap);
 				affichplateau(board);
+				*play=2;
 				break;
 			}
 			else{
@@ -1727,6 +1743,7 @@ void tourjblanc(int board[10][10]){
 			}
 		}
 	}
+	return;
 	if (board[posiav][posjav]== 4){
 		while(a==0){
 			posfoublanc(board, posiav, posjav);
@@ -1739,6 +1756,7 @@ void tourjblanc(int board[10][10]){
 			if ((board[posiap][posjap] >= 10 && board[posiap][posjap] < 1000) || board[posiap][posjap] == 0){
 				changepos(board, posiav, posjav, posiap, posjap);
 				affichplateau(board);
+				*play=2;
 				break;
 			}
 			else{
@@ -1746,6 +1764,7 @@ void tourjblanc(int board[10][10]){
 			}
 		}
 	}
+	return;
 	if (board[posiav][posjav]== 5){
 		while(a==0){
 			posroiblanc(board, posiav, posjav);
@@ -1759,6 +1778,7 @@ void tourjblanc(int board[10][10]){
 			if ((board[posiap][posjap] >= 10 && board[posiap][posjap] < 1000) || board[posiap][posjap] == 0){
 				changepos(board, posiav, posjav, posiap, posjap);
 				affichplateau(board);
+				*play=2;
 				break;
 			}
 			else{
@@ -1766,6 +1786,7 @@ void tourjblanc(int board[10][10]){
 			}
 		}	
 	}
+	return;
 	if (board[posiav][posjav]== 6){
 		while(a==0){
 			posdameblanc(board, posiav, posjav);
@@ -1780,23 +1801,26 @@ void tourjblanc(int board[10][10]){
 				changepos(board, posiav, posjav, posiap, posjap);
 				affichplateau(board);
 				break;
+				*play=2;
 			}
 			else{
 				printf("Vous ne pouvez pas jouer ici");
 			}
 		}
 	}
+	return;
 }
 
 
 
 
-void tourjnoir(int board[10][10]){
+void tourjnoir(int board[10][10], int*play){
 	int posiav=0;
 	int posjav=0;
 	int posiap=0;
 	int posjap=0;
 	int a = 0;
+	printf("JOUEUR NOIR\n");
 	while(a==0){
 		printf("Quel pion voulez vous jouer ?\n");
 		printf("i = ?");
@@ -1826,6 +1850,7 @@ void tourjnoir(int board[10][10]){
 			if (board[posiap][posjap] <= 10 ){
 				changepos(board, posiav, posjav, posiap, posjap);
 				affichplateau(board);
+				*play=1;
 				break;
 			}
 			else{
@@ -1833,6 +1858,7 @@ void tourjnoir(int board[10][10]){
 			}
 		}	
 	}
+	return;
 	if (board[posiav][posjav]== 12){
 		while(a==0){
 			postournoir(board, posiav, posjav);
@@ -1846,6 +1872,7 @@ void tourjnoir(int board[10][10]){
 			if (board[posiap][posjap] <= 10 ){
 				changepos(board, posiav, posjav, posiap, posjap);
 				affichplateau(board);
+				*play=1;
 				break;
 			}
 			else{
@@ -1853,6 +1880,7 @@ void tourjnoir(int board[10][10]){
 			}
 		}	
 	}
+	return;
 	if (board[posiav][posjav]== 13){
 		while(a==0){
 			poscavaliernoir(board, posiav, posjav);
@@ -1866,6 +1894,7 @@ void tourjnoir(int board[10][10]){
 			if (board[posiap][posjap] <= 10){
 				changepos(board, posiav, posjav, posiap, posjap);
 				affichplateau(board);
+				*play=1;
 				break;
 			}
 			else{
@@ -1873,6 +1902,7 @@ void tourjnoir(int board[10][10]){
 			}
 		}
 	}
+	return;
 	if (board[posiav][posjav]== 14){
 		while(a==0){
 			posfounoir(board, posiav, posjav);
@@ -1885,6 +1915,7 @@ void tourjnoir(int board[10][10]){
 			if (board[posiap][posjap] <= 10){
 				changepos(board, posiav, posjav, posiap, posjap);
 				affichplateau(board);
+				*play=1;
 				break;
 			}
 			else{
@@ -1892,6 +1923,7 @@ void tourjnoir(int board[10][10]){
 			}
 		}
 	}
+	return;
 	if (board[posiav][posjav]== 15){
 		while(a==0){
 			posroinoir(board, posiav, posjav);
@@ -1905,6 +1937,7 @@ void tourjnoir(int board[10][10]){
 			if (board[posiap][posjap] <= 10){
 				changepos(board, posiav, posjav, posiap, posjap);
 				affichplateau(board);
+				*play=1;
 				break;
 			}
 			else{
@@ -1912,6 +1945,7 @@ void tourjnoir(int board[10][10]){
 			}
 		}	
 	}
+	return;
 	if (board[posiav][posjav]== 16){
 		while(a==0){
 			posdamenoir(board, posiav, posjav);
@@ -1925,6 +1959,7 @@ void tourjnoir(int board[10][10]){
 			if (board[posiap][posjap] <= 10 ){
 				changepos(board, posiav, posjav, posiap, posjap);
 				affichplateau(board);
+				*play=1;
 				break;
 			}
 			else{
@@ -1932,6 +1967,7 @@ void tourjnoir(int board[10][10]){
 			}
 		}
 	}
+	return;
 }
 
 
