@@ -15,8 +15,11 @@
 // blancs : pion = 1; tours = 2; cavaliers = 3; fous = 4; roi = 5; dame = 6;
 // noirs : pion = 11; tours = 12; cavaliers = 13; fous = 14; roi = 15; dame = 16;
 
+static volatile int plateau [SUR_MATRICE][SUR_MATRICE];
+static volatile int play=0;
 
-void savexit(int plateau[10][10], int play){
+
+void savexit(){   //int plateau[10][10], int play)
 	sauvegarde(plateau, play);
 	exit(0);
 }
@@ -33,10 +36,8 @@ int main (){
 	int posiap=0;
 	int posjap=0;
 	int end=0;
-	int play=0;
 	int save=0;
 	char a;
-	int plateau [SUR_MATRICE][SUR_MATRICE];
 	int i=0;
 	int j=0;
 	//int tourblanc=0;
@@ -71,17 +72,24 @@ int main (){
 	plateau[8][8]=2;
 	plateau[8][2]=3;
 	plateau[8][7]=3;
-	plateau[8][3]=4;
+	plateau[4][4]=4;
 	plateau[8][6]=4;
 	plateau[8][5]=6;
 	plateau[8][4]=5;
 	for (j=1; j<=8; j++){
 		plateau[7][j]=1;
 	}
+	/*
+	affichplateau(plateau);
 	
+	getchar();
 	
+	posfoublanc(plateau, I_TEST, J_TEST);
 	
-		
+	affichpos(plateau);
+	
+	getchar();
+	*/
 	//sauvegarde(plateau, play);
 	
 	

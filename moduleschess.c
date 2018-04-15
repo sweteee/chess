@@ -559,7 +559,7 @@ int posfoublanc(int board[SUR_MATRICE][SUR_MATRICE], int posi, int posj){
 	int ej=0;
 	
 
-	
+	//Diagonale piece-> bas droit
 	while (a1 <= 1){
 		for (i=posi+1, j= posj+1; i<=9 && j<= 9; i++, j++){
 			
@@ -575,6 +575,7 @@ int posfoublanc(int board[SUR_MATRICE][SUR_MATRICE], int posi, int posj){
 		}
 		
 	}
+	//Diagonale pièce -> bas gauche
 	while (a2 <= 1){
 		for (i=posi+1, j = posj-1; i<= 9 && j>=0; i++, j--){
 				if (board[i][j] >=1){
@@ -586,6 +587,7 @@ int posfoublanc(int board[SUR_MATRICE][SUR_MATRICE], int posi, int posj){
 			a2++;
 		}
 	}
+	//Diagonale pièce -> haut gauche
 	while (a3 <= 1){
 		for (i=posi-1, j=posj-1; i>=0 && j>=0; i--,j--){
 			if (board[i][j] >=1){
@@ -597,6 +599,7 @@ int posfoublanc(int board[SUR_MATRICE][SUR_MATRICE], int posi, int posj){
 		}
 		
 	}
+	//Diagonale pièce -> haut droit
 	while (a4 <= 1){
 			for (i=posi-1, j=posj+1; i>= 0 && j<=9; i--, j++){
 				if (board[i][j] >=1){
@@ -1589,9 +1592,8 @@ char nomfichier[50];
 FILE*fic;
     printf("Nom de fichier ?");
     scanf("%s",nomfichier);
-    printf("test2");
+    strcat(nomfichier, ".txt");
     fic = fopen(nomfichier, "w");
-    printf("test");
     if(fic==NULL)
     {
         printf("Impossible de créer le fichier\n");
@@ -1689,7 +1691,7 @@ void tourjblanc(int board[10][10], int*play){
 			pospionblanc(board, posiav, posjav);
 			if ((board[posiap][posjap] >= 100 && board[posiap][posjap] < 1000) || board[posiap][posjap] == 0){
 				changepos(board, posiav, posjav, posiap, posjap);
-				affichplateau(board);
+				affichpos(board);
 				*play=2;
 				break;
 			}
@@ -1712,7 +1714,7 @@ void tourjblanc(int board[10][10], int*play){
 			scanf("%d", &posjap);
 			if ((board[posiap][posjap] >= 10 && board[posiap][posjap] < 1000) || board[posiap][posjap] == 0){
 				changepos(board, posiav, posjav, posiap, posjap);
-				affichplateau(board);
+				affichpos(board);
 				*play=2;
 				break;
 			}
